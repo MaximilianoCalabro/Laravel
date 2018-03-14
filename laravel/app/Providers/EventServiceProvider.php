@@ -1,8 +1,8 @@
 <?php
 
-namespace admin\Providers;
+namespace sisVentas\Providers;
 
-use Illuminate\Support\Facades\Event;
+use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -13,19 +13,20 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'admin\Events\Event' => [
-            'admin\Listeners\EventListener',
+        'sisVentas\Events\SomeEvent' => [
+            'sisVentas\Listeners\EventListener',
         ],
     ];
 
     /**
-     * Register any events for your application.
+     * Register any other events for your application.
      *
+     * @param  \Illuminate\Contracts\Events\Dispatcher  $events
      * @return void
      */
-    public function boot()
+    public function boot(DispatcherContract $events)
     {
-        parent::boot();
+        parent::boot($events);
 
         //
     }
